@@ -1,9 +1,10 @@
 services:
   netflow2ng:
-    build: . # make sure to clone the whole repository
+    build: .
     container_name: netflow2ng
     restart: unless-stopped
-    entrypoint: /netflow2ng # --level=debug
+    entrypoint: /netflow2ng
+    command: ["--metrics=0.0.0.0:8081"]
     network_mode: host
 
   redis:
