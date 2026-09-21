@@ -4,7 +4,6 @@ services:
     container_name: netflow2ng
     restart: unless-stopped
     entrypoint: /netflow2ng # --level=debug
-    # network mode must be host due to source port changing for inbound netflow packets with NAT
     network_mode: host
 
   redis:
@@ -13,7 +12,7 @@ services:
 
   ntopng:
     image: "ntop/ntopng:latest"
-    command: ["--community", "--redis", "localhost", "--interface", "tcp://localhost:5556", "--local-networks", "192.168.1.0/24"]
+    command: ["--community", "--redis", "localhost", "--interface", "tcp://localhost:5556", "--local-networks", "192.168.1.0/24", "-w", "3001"]
     network_mode: host
     depends_on:
       - netflow2ng
