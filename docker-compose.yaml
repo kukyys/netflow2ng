@@ -13,7 +13,7 @@ services:
 
   ntopng:
     image: "ntop/ntopng:latest"
-    command: ["--community", "--redis", "localhost", "--interface", "tcp://localhost:5556", "--local-networks", "192.168.1.0/24", "-w", "3001"]
+    command: ["--community", "--redis", "localhost", "--interface", "tcp://localhost:5556", "--local-networks", "192.168.1.0/24", "-w", "3001", "--zmq-disable-encryption"]
     network_mode: host
     depends_on:
       - netflow2ng
